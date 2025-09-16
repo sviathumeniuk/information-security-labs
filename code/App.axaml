@@ -1,0 +1,61 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="code.App"
+             xmlns:local="using:code"
+             RequestedThemeVariant="Dark">
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <FluentTheme />
+        
+        <Style Selector="Window">
+            <Setter Property="Background" Value="#121212"/>
+        </Style>
+        
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#D4AF37"/>
+            <Setter Property="Foreground" Value="#121212"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        
+        <Style Selector="Button:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#F5D76E"/>
+            <Setter Property="Foreground" Value="#121212"/>
+        </Style>
+        
+        <Style Selector="Button:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="#A08826"/>
+        </Style>
+        
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="#E6D9A5"/>
+        </Style>
+        
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="Foreground" Value="#E6D9A5"/>
+            <Setter Property="CaretBrush" Value="#D4AF37"/>
+            <Setter Property="BorderBrush" Value="#D4AF37"/>
+        </Style>
+        
+        <Style Selector="CheckBox">
+            <Setter Property="Foreground" Value="#E6D9A5"/>
+        </Style>
+        
+        <Style Selector="CheckBox:checked /template/ Border#NormalRectangle">
+            <Setter Property="Background" Value="#D4AF37"/>
+            <Setter Property="BorderBrush" Value="#D4AF37"/>
+        </Style>
+    </Application.Styles>
+    
+    <Application.Resources>
+        <SolidColorBrush x:Key="GoldBrush" Color="#D4AF37"/>
+        <SolidColorBrush x:Key="LightGoldBrush" Color="#E6D9A5"/>
+        <SolidColorBrush x:Key="DarkBackgroundBrush" Color="#121212"/>
+    </Application.Resources>
+</Application>

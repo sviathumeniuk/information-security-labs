@@ -1,0 +1,26 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:code.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="code.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="code">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Border Padding="20">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+            <StackPanel x:Name="GatewayPanel" IsVisible="{Binding IsGatewayVisible}" Spacing="12">
+                <TextBlock Text="Лабораторні роботи" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                <Button Content="Лабораторна робота 1" Command="{Binding OpenLab1Command}" Width="250" Height="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Button Content="Лабораторна робота 2" Command="{Binding OpenLab2Command}" Width="250" Height="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <ContentControl Content="{Binding CurrentView}" />
+        </StackPanel>
+    </Border>
+</Window>
