@@ -32,8 +32,9 @@ public partial class App : Application
         
         services.AddSingleton<IServiceProvider>(sp => sp);
         
+        services.AddSingleton<MainWindowViewModel>();
+        services.AddSingleton<INavigator, Navigator>();
         services.AddTransient<Lab1ViewModel>();
-        services.AddTransient<MainWindowViewModel>();
 
         _serviceProvider = services.BuildServiceProvider();
     }
@@ -45,7 +46,6 @@ public partial class App : Application
             DisableAvaloniaDataAnnotationValidation();
             desktop.MainWindow = new MainWindow
             {
-                // Використання DI для отримання MainWindowViewModel
                 DataContext = _serviceProvider.GetRequiredService<MainWindowViewModel>(),
             };
         }

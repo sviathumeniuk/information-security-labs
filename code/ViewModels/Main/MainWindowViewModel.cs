@@ -1,34 +1,35 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using code.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace code.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    private readonly IServiceProvider _serviceProvider;
+    private readonly INavigator _navigator;
 
     [ObservableProperty]
     private ViewModelBase? _currentView;
+    
+    public bool IsGatewayVisible => _navigator.IsMainMenuVisible;
 
-    public bool IsGatewayVisible => CurrentView is null;
-
-    public MainWindowViewModel(IServiceProvider serviceProvider)
+    public MainWindowViewModel(INavigator navigator)
     {
-        _serviceProvider = serviceProvider;
-        CurrentView = null;
+        _navigator = navigator;
+        _navigator.CurrentViewChanged += OnNavigatorCurrentViewChanged;
     }
 
-    partial void OnCurrentViewChanged(ViewModelBase? value)
+    private void OnNavigatorCurrentViewChanged(object? sender, ViewModelBase? view)
     {
+        CurrentView = view;
         OnPropertyChanged(nameof(IsGatewayVisible));
     }
 
     [RelayCommand]
     private void OpenLab1()
     {
-        CurrentView = _serviceProvider.GetRequiredService<Lab1ViewModel>();
+        _navigator.NavigateTo<Lab1ViewModel>();
     }
 
     [RelayCommand]

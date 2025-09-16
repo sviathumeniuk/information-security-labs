@@ -2,6 +2,7 @@ using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using code.Models;
 using System.IO;
@@ -13,6 +14,7 @@ public partial class Lab1ViewModel : ViewModelBase
 {
     private readonly IRandomGenerator _randomGenerator;
     private readonly IPiCalculator _piCalculator;
+    private readonly INavigator _navigator;
 
     [ObservableProperty] private string? _count = null;
     [ObservableProperty] private int _seed = 16;
@@ -25,15 +27,17 @@ public partial class Lab1ViewModel : ViewModelBase
     [ObservableProperty] private bool _isCustomGenerator = false;
 
     private const string RESULTS_FOLDER = "Results";
-    private const string FILE_PATH = "Results/numbers.txt";
+    private const string FILE_PATH = "Results/Numbers.txt";
     
 
     public Lab1ViewModel(
         IRandomGenerator randomGenerator,
-        IPiCalculator piCalculator)
+        IPiCalculator piCalculator,
+        INavigator navigator)
     {
         _randomGenerator = randomGenerator;
         _piCalculator = piCalculator;
+        _navigator = navigator;
     }
 
     [RelayCommand]
@@ -81,6 +85,12 @@ public partial class Lab1ViewModel : ViewModelBase
         {
             Message = ex.Message;
         }
+    }
+
+    [RelayCommand]
+    private void ReturnToMenu()
+    {
+        _navigator.NavigateToMenu();
     }
 
     private void ResetState()
