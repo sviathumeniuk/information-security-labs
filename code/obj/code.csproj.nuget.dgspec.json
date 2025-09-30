@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "O:\\Study\\is\\lab_1\\code\\code.csproj": {}
+    "O:\\Study\\is\\code\\code.csproj": {}
   },
   "projects": {
-    "O:\\Study\\is\\lab_1\\code\\code.csproj": {
+    "O:\\Study\\is\\code\\code.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "O:\\Study\\is\\lab_1\\code\\code.csproj",
+        "projectUniqueName": "O:\\Study\\is\\code\\code.csproj",
         "projectName": "code",
-        "projectPath": "O:\\Study\\is\\lab_1\\code\\code.csproj",
+        "projectPath": "O:\\Study\\is\\code\\code.csproj",
         "packagesPath": "C:\\Users\\slavy\\.nuget\\packages\\",
-        "outputPath": "O:\\Study\\is\\lab_1\\code\\obj\\",
+        "outputPath": "O:\\Study\\is\\code\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\slavy\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -29,12 +29,14 @@ public partial class App : Application
         services.AddSingleton<IGcdCalculator, GcdCalculator>();
         services.AddSingleton<IRandomGenerator, RandomGenerator>();
         services.AddSingleton<IPiCalculator, PiCalculator>();
+        services.AddSingleton<IMD5Hasher, MD5Hasher>();
         
         services.AddSingleton<IServiceProvider>(sp => sp);
         
         services.AddSingleton<MainWindowViewModel>();
         services.AddSingleton<INavigator, Navigator>();
         services.AddTransient<Lab1ViewModel>();
+        services.AddTransient<Lab2ViewModel>();
 
         _serviceProvider = services.BuildServiceProvider();
     }

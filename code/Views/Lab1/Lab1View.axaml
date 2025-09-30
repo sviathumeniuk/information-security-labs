@@ -5,7 +5,7 @@
              x:DataType="vm:Lab1ViewModel">
     <Border Background="#181818" CornerRadius="8" Padding="30" MaxWidth="600">
         <StackPanel Spacing="20">
-            <TextBlock Text="Лабораторна робота 1" 
+            <TextBlock Text="Лабораторна робота 1 - RNG" 
                       HorizontalAlignment="Center" 
                       VerticalAlignment="Center" 
                       FontSize="24"

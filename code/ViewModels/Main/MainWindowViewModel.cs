@@ -35,6 +35,6 @@ public partial class MainWindowViewModel : ViewModelBase
     [RelayCommand]
     private void OpenLab2()
     {
-        throw new NotImplementedException();
+        _navigator.NavigateTo<Lab2ViewModel>();
     }
 }

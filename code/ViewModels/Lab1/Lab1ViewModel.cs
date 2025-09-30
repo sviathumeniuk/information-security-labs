@@ -2,7 +2,6 @@ using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using code.Models;
 using System.IO;
@@ -29,7 +28,6 @@ public partial class Lab1ViewModel : ViewModelBase
     private const string RESULTS_FOLDER = "Results";
     private const string FILE_PATH = "Results/Numbers.txt";
     
-
     public Lab1ViewModel(
         IRandomGenerator randomGenerator,
         IPiCalculator piCalculator,

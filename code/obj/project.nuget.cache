@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uFr6409VCAU=",
+  "dgSpecHash": "f1zYpcChrdY=",
   "success": true,
-  "projectFilePath": "O:\\Study\\is\\lab_1\\code\\code.csproj",
+  "projectFilePath": "O:\\Study\\is\\code\\code.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\slavy\\.nuget\\packages\\avalonia\\11.3.6\\avalonia.11.3.6.nupkg.sha512",
     "C:\\Users\\slavy\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.25547.20250602\\avalonia.angle.windows.natives.2.1.25547.20250602.nupkg.sha512",
