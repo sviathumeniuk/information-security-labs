@@ -37,6 +37,7 @@ public partial class App : Application
         services.AddSingleton<INavigator, Navigator>();
         services.AddTransient<Lab1ViewModel>();
         services.AddTransient<Lab2ViewModel>();
+        services.AddTransient<Lab3ViewModel>();
 
         _serviceProvider = services.BuildServiceProvider();
     }

@@ -19,6 +19,7 @@
                 <TextBlock Text="Лабораторні роботи" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
                 <Button Content="Лабораторна робота 1" Command="{Binding OpenLab1Command}" Width="250" Height="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 <Button Content="Лабораторна робота 2" Command="{Binding OpenLab2Command}" Width="250" Height="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Button Content="Лабораторна робота 3" Command="{Binding OpenLab3Command}" Width="250" Height="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             </StackPanel>
             <ContentControl Content="{Binding CurrentView}" />
         </StackPanel>

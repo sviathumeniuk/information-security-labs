@@ -56,6 +56,14 @@ public class MD5Hasher : IMD5Hasher
         return BytesToHex(digest);
     }
 
+    public byte[] ComputeHashBytes(string input)
+    {
+        Initialize();
+        var bytes = Encoding.UTF8.GetBytes(input);
+        Update(bytes, 0, bytes.Length);
+        return FinalizeHash();
+    }
+
     public string ComputeFileHash(string filePath)
     {
         Initialize();

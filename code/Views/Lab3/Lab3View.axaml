@@ -1,0 +1,124 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:code.ViewModels"
+             x:Class="code.Views.Lab3View"
+             x:DataType="vm:Lab3ViewModel">
+  <ScrollViewer>
+    <Border Padding="20">
+      <StackPanel Spacing="15" MaxWidth="800">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Лабораторна робота №3" 
+                     FontSize="24" 
+                     FontWeight="Bold"/>
+          <TextBlock Text="Шифрування файлів за алгоритмом RC5 (w=16, r=20, b=16)"
+                     FontSize="14"
+                     Foreground="Gray"/>
+        </StackPanel>
+
+        <Border Background="#1E1E1E" 
+                CornerRadius="6" 
+                Padding="15">
+          <StackPanel Spacing="10">
+            <TextBlock Text="Режим роботи:" FontWeight="SemiBold" Foreground="White"/>
+            <StackPanel Orientation="Horizontal" Spacing="15">
+              <RadioButton Content="Шифрування" 
+                          IsChecked="{Binding IsEncryptMode}"
+                          GroupName="Mode"
+                          Foreground="White"/>
+              <RadioButton Content="Дешифрування" 
+                          IsChecked="{Binding !IsEncryptMode}"
+                          GroupName="Mode"
+                          Foreground="White"/>
+            </StackPanel>
+          </StackPanel>
+        </Border>
+
+        <Border Background="#1E1E1E" 
+                CornerRadius="6" 
+                Padding="15">
+          <StackPanel Spacing="10">
+            <TextBlock Text="Парольна фраза:" FontWeight="SemiBold" Foreground="White"/>
+            <TextBox Text="{Binding Password}"
+                    Watermark="Введіть парольну фразу для шифрування/дешифрування"
+                    PasswordChar="●"/>
+            <TextBlock Text="Ключ генерується за допомогою MD5 хешування"
+                      FontSize="12"
+                      Foreground="Gray"/>
+          </StackPanel>
+        </Border>
+
+        <Border Background="#1E1E1E" 
+                CornerRadius="6" 
+                Padding="15">
+          <StackPanel Spacing="12">
+            <TextBlock Text="Файли:" FontWeight="SemiBold" Foreground="White"/>
+            
+            <StackPanel Spacing="5">
+              <TextBlock Text="Вхідний файл:" Foreground="White"/>
+              <Grid ColumnDefinitions="*,Auto">
+                <TextBox Grid.Column="0"
+                        Text="{Binding InputFilePath}"
+                        IsReadOnly="True"
+                        Watermark="Виберіть файл для обробки"/>
+                <Button Grid.Column="1"
+                        Content="Вибрати..."
+                        Command="{Binding SelectInputFileCommand}"
+                        Margin="5,0,0,0"/>
+              </Grid>
+            </StackPanel>
+
+            <TextBlock Text="Результат буде збережено в папку Results"
+                      FontSize="12"
+                      Foreground="Gray"
+                      FontStyle="Italic"/>
+          </StackPanel>
+        </Border>
+
+        <StackPanel Spacing="10" HorizontalAlignment="Center">
+          <Button Command="{Binding ProcessFileCommand}"
+                  IsEnabled="{Binding !IsProcessing}"
+                  Width="450"
+                  Height="45"
+                  FontSize="16"
+                  FontWeight="SemiBold"
+                  HorizontalContentAlignment="Center"
+                  VerticalContentAlignment="Center"
+                  IsVisible="{Binding IsEncryptMode}">
+            <TextBlock Text="Зашифрувати файл" Foreground="Black"/>
+          </Button>
+          <Button Command="{Binding ProcessFileCommand}"
+                  IsEnabled="{Binding !IsProcessing}"
+                  Width="450"
+                  Height="45"
+                  FontSize="16"
+                  FontWeight="SemiBold"
+                  HorizontalContentAlignment="Center"
+                  VerticalContentAlignment="Center"
+                  IsVisible="{Binding !IsEncryptMode}">
+            <TextBlock Text="Дешифрувати файл" Foreground="Black"/>
+          </Button>
+        </StackPanel>
+
+        <Border Background="#1E1E1E" 
+                CornerRadius="6" 
+                Padding="15"
+                IsVisible="{Binding StatusMessage, Converter={x:Static ObjectConverters.IsNotNull}}">
+          <StackPanel Spacing="8">
+            <TextBlock Text="Статус:" FontWeight="SemiBold" Foreground="White"/>
+            <TextBlock Text="{Binding StatusMessage}"
+                      TextWrapping="Wrap"
+                      Foreground="LightGray"/>
+          </StackPanel>
+        </Border>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+          <Button Content="Повернутися до меню"
+                  Command="{Binding GoBackCommand}"
+                  Width="450"
+                  HorizontalContentAlignment="Center"
+                  VerticalContentAlignment="Center"/>
+        </StackPanel>
+      </StackPanel>
+    </Border>
+  </ScrollViewer>
+</UserControl>
