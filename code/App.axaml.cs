@@ -30,6 +30,8 @@ public partial class App : Application
         services.AddSingleton<IRandomGenerator, RandomGenerator>();
         services.AddSingleton<IPiCalculator, PiCalculator>();
         services.AddSingleton<IMD5Hasher, MD5Hasher>();
+        services.AddSingleton<IBlockCipher, RC5Cipher>();
+        services.AddSingleton<IRsaCipher, RsaCipher>();
         
         services.AddSingleton<IServiceProvider>(sp => sp);
         
@@ -38,6 +40,7 @@ public partial class App : Application
         services.AddTransient<Lab1ViewModel>();
         services.AddTransient<Lab2ViewModel>();
         services.AddTransient<Lab3ViewModel>();
+        services.AddTransient<Lab4ViewModel>();
 
         _serviceProvider = services.BuildServiceProvider();
     }

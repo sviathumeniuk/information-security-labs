@@ -43,4 +43,10 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         _navigator.NavigateTo<Lab3ViewModel>();
     }
+
+    [RelayCommand]
+    private void OpenLab4()
+    {
+        _navigator.NavigateTo<Lab4ViewModel>();
+    }
 }
