@@ -32,6 +32,7 @@ public partial class App : Application
         services.AddSingleton<IMD5Hasher, MD5Hasher>();
         services.AddSingleton<IBlockCipher, RC5Cipher>();
         services.AddSingleton<IRsaCipher, RsaCipher>();
+        services.AddSingleton<IDigitalSignature, DssDigitalSignature>();
         
         services.AddSingleton<IServiceProvider>(sp => sp);
         
@@ -41,6 +42,7 @@ public partial class App : Application
         services.AddTransient<Lab2ViewModel>();
         services.AddTransient<Lab3ViewModel>();
         services.AddTransient<Lab4ViewModel>();
+        services.AddTransient<Lab5ViewModel>();
 
         _serviceProvider = services.BuildServiceProvider();
     }

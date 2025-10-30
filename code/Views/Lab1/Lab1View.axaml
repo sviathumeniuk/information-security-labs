@@ -3,7 +3,8 @@
              xmlns:vm="using:code.ViewModels"
              x:Class="code.Views.Lab1View"
              x:DataType="vm:Lab1ViewModel">
-    <Border Background="#181818" CornerRadius="8" Padding="30" MaxWidth="600">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Border Background="#181818" CornerRadius="8" Padding="30" MaxWidth="600" HorizontalAlignment="Center">
         <StackPanel Spacing="20">
             <TextBlock Text="Лабораторна робота 1 - RNG" 
                       HorizontalAlignment="Center" 
@@ -58,4 +59,5 @@
             </Border>
         </StackPanel>
     </Border>
+  </ScrollViewer>
 </UserControl>

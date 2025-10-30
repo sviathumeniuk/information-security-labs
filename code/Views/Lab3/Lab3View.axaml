@@ -3,9 +3,9 @@
              xmlns:vm="using:code.ViewModels"
              x:Class="code.Views.Lab3View"
              x:DataType="vm:Lab3ViewModel">
-  <ScrollViewer>
-    <Border Padding="20">
-      <StackPanel Spacing="15" MaxWidth="800">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Border Padding="20" MaxWidth="800" HorizontalAlignment="Center">
+      <StackPanel Spacing="15">
         <StackPanel Spacing="8">
           <TextBlock Text="Лабораторна робота №3" 
                      FontSize="24" 

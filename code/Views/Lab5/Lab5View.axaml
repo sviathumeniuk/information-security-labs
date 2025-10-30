@@ -1,0 +1,281 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:code.ViewModels"
+             x:Class="code.Views.Lab5View"
+             x:DataType="vm:Lab5ViewModel">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Border Padding="20" MaxWidth="900" HorizontalAlignment="Center">
+      <StackPanel Spacing="15">
+
+        <StackPanel Spacing="8">
+          <TextBlock Text="Лабораторна робота №5" 
+                     FontSize="24" 
+                     FontWeight="Bold"/>
+          <TextBlock Text="Цифровий підпис за стандартом DSS (Digital Signature Standard)"
+                     FontSize="14"
+                     Foreground="Gray"/>
+        </StackPanel>
+
+        <Border Background="#1E1E1E" 
+                CornerRadius="6" 
+                Padding="15">
+          <StackPanel Spacing="12">
+            <TextBlock Text="Управління ключами DSS:" FontWeight="SemiBold" Foreground="White"/>
+            
+            <Button Content="Згенерувати нову пару ключів"
+                    Command="{Binding GenerateKeysCommand}"
+                    Width="450"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Padding="15,8"/>
+
+            <Separator Background="#3F3F46" Margin="0,5"/>
+
+            <StackPanel Spacing="8">
+              <TextBlock Text="Публічний ключ:" Foreground="White" FontWeight="SemiBold"/>
+              <Grid ColumnDefinitions="*,Auto">
+                <TextBox Grid.Column="0"
+                         Text="{Binding PublicKeyPath}"
+                         IsReadOnly="True"
+                         Watermark="Виберіть публічний ключ (.xml)"/>
+                <Button Grid.Column="1"
+                        Content="Вибрати..."
+                        Command="{Binding SelectPublicKeyCommand}"
+                        Margin="5,0,0,0"/>
+              </Grid>
+            </StackPanel>
+
+            <StackPanel Spacing="8">
+              <TextBlock Text="Приватний ключ:" Foreground="White" FontWeight="SemiBold"/>
+              <Grid ColumnDefinitions="*,Auto">
+                <TextBox Grid.Column="0"
+                         Text="{Binding PrivateKeyPath}"
+                         IsReadOnly="True"
+                         Watermark="Виберіть приватний ключ (.xml)"/>
+                <Button Grid.Column="1"
+                        Content="Вибрати..."
+                        Command="{Binding SelectPrivateKeyCommand}"
+                        Margin="5,0,0,0"/>
+              </Grid>
+            </StackPanel>
+          </StackPanel>
+        </Border>
+
+        <Border Background="#1E1E1E" 
+                CornerRadius="6" 
+                Padding="15">
+          <StackPanel Spacing="10">
+            <TextBlock Text="Режим роботи:" FontWeight="SemiBold" Foreground="White"/>
+            <StackPanel Orientation="Horizontal" Spacing="15">
+              <RadioButton Content="Підпис тексту" 
+                          IsChecked="{Binding IsTextMode}"
+                          GroupName="Mode"
+                          Foreground="White"/>
+              <RadioButton Content="Підпис файлу" 
+                          IsChecked="{Binding IsFileMode}"
+                          GroupName="Mode"
+                          Foreground="White"/>
+              <RadioButton Content="Перевірка підпису" 
+                          IsChecked="{Binding IsVerifyMode}"
+                          GroupName="Mode"
+                          Foreground="White"/>
+            </StackPanel>
+          </StackPanel>
+        </Border>
+
+        <Border Background="#1E1E1E" 
+                CornerRadius="6" 
+                Padding="15"
+                IsVisible="{Binding IsTextMode}">
+          <StackPanel Spacing="12">
+            <TextBlock Text="Підпис текстового повідомлення:" FontWeight="SemiBold" Foreground="White"/>
+            
+            <StackPanel Spacing="8">
+              <TextBlock Text="Введіть текст для підпису:" Foreground="White"/>
+              <TextBox Text="{Binding InputText}"
+                       AcceptsReturn="True"
+                       TextWrapping="Wrap"
+                       MinHeight="100"
+                       Watermark="Введіть текст, який потрібно підписати..."/>
+            </StackPanel>
+
+            <Button Content="Створити підпис"
+                    Command="{Binding SignTextCommand}"
+                    Width="450"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Padding="15,8"/>
+
+            <StackPanel Spacing="8" IsVisible="{Binding OutputSignature, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+              <TextBlock Text="Цифровий підпис (HEX):" Foreground="White" FontWeight="SemiBold"/>
+              <Border Background="#2D2D30" 
+                      BorderBrush="#3F3F46"
+                      BorderThickness="1"
+                      CornerRadius="4"
+                      Padding="10">
+                <TextBox Text="{Binding OutputSignature}"
+                         IsReadOnly="True"
+                         TextWrapping="Wrap"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         FontFamily="Consolas,Courier New"
+                         FontSize="12"/>
+              </Border>
+              <Button Content="Зберегти підпис у файл"
+                      Command="{Binding SaveSignatureCommand}"
+                      HorizontalAlignment="Left"/>
+            </StackPanel>
+          </StackPanel>
+        </Border>
+
+        <Border Background="#1E1E1E" 
+                CornerRadius="6" 
+                Padding="15"
+                IsVisible="{Binding IsFileMode}">
+          <StackPanel Spacing="12">
+            <TextBlock Text="Підпис файлу:" FontWeight="SemiBold" Foreground="White"/>
+            
+            <StackPanel Spacing="8">
+              <TextBlock Text="Виберіть файл для підпису:" Foreground="White"/>
+              <Grid ColumnDefinitions="*,Auto">
+                <TextBox Grid.Column="0"
+                         Text="{Binding InputFilePath}"
+                         IsReadOnly="True"
+                         Watermark="Виберіть файл..."/>
+                <Button Grid.Column="1"
+                        Content="Вибрати..."
+                        Command="{Binding SelectInputFileCommand}"
+                        Margin="5,0,0,0"/>
+              </Grid>
+            </StackPanel>
+
+            <Button Content="Підписати файл"
+                    Command="{Binding SignFileCommand}"
+                    Width="450"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Padding="15,8"/>
+
+            <StackPanel Spacing="8" IsVisible="{Binding OutputSignature, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+              <TextBlock Text="Цифровий підпис файлу (HEX):" Foreground="White" FontWeight="SemiBold"/>
+              <Border Background="#2D2D30" 
+                      BorderBrush="#3F3F46"
+                      BorderThickness="1"
+                      CornerRadius="4"
+                      Padding="10">
+                <TextBox Text="{Binding OutputSignature}"
+                         IsReadOnly="True"
+                         TextWrapping="Wrap"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         FontFamily="Consolas,Courier New"
+                         FontSize="12"
+                         MaxHeight="150"/>
+              </Border>
+              <TextBlock Text="Підпис автоматично збережено у файл .sig"
+                         FontSize="12"
+                         Foreground="Gray"
+                         FontStyle="Italic"/>
+            </StackPanel>
+          </StackPanel>
+        </Border>
+
+        <Border Background="#1E1E1E" 
+                CornerRadius="6" 
+                Padding="15"
+                IsVisible="{Binding IsVerifyMode}">
+          <StackPanel Spacing="12">
+            <TextBlock Text="Перевірка цифрового підпису:" FontWeight="SemiBold" Foreground="White"/>
+            
+            <StackPanel Spacing="8">
+            <TextBlock Text="Введіть текст для перевірки:" Foreground="White"/>
+            <TextBox Text="{Binding VerifyText}"
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    MinHeight="100"
+                    Watermark="Введіть текст, підпис якого потрібно перевірити..."/>
+            </StackPanel>
+
+            <StackPanel Spacing="8">
+              <TextBlock Text="Файл для перевірки:" Foreground="White"/>
+              <Grid ColumnDefinitions="*,Auto">
+                <TextBox Grid.Column="0"
+                         Text="{Binding InputFilePath}"
+                         IsReadOnly="True"
+                         Watermark="Виберіть файл..."/>
+                <Button Grid.Column="1"
+                        Content="Вибрати..."
+                        Command="{Binding SelectInputFileCommand}"
+                        Margin="5,0,0,0"/>
+              </Grid>
+            </StackPanel>
+
+            <StackPanel Spacing="8">
+              <TextBlock Text="Файл підпису (.sig):" Foreground="White"/>
+              <Grid ColumnDefinitions="*,Auto">
+                <TextBox Grid.Column="0"
+                         Text="{Binding SignatureFilePath}"
+                         IsReadOnly="True"
+                         Watermark="Виберіть файл підпису (HEX формат)..."/>
+                <Button Grid.Column="1"
+                        Content="Вибрати..."
+                        Command="{Binding SelectSignatureFileCommand}"
+                        Margin="5,0,0,0"/>
+              </Grid>
+            </StackPanel>
+
+            <Button Content="Перевірити підпис"
+                    Command="{Binding VerifySignatureCommand}"
+                    Width="450"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Padding="15,8"/>
+
+            <Border Background="#2D2D30"
+                    BorderBrush="#4CAF50"
+                    BorderThickness="2"
+                    CornerRadius="6"
+                    Padding="15"
+                    IsVisible="{Binding VerificationResult, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+              <TextBlock Text="{Binding VerificationResult}"
+                         FontWeight="SemiBold"
+                         FontSize="14"
+                         TextWrapping="Wrap"
+                         Foreground="White"/>
+            </Border>
+
+          </StackPanel>
+        </Border>
+
+        <Border Background="#1E1E1E" 
+                CornerRadius="6" 
+                Padding="15"
+                IsVisible="{Binding Message, Converter={x:Static ObjectConverters.IsNotNull}}">
+          <StackPanel Spacing="8">
+            <TextBlock Text="Статус:" FontWeight="SemiBold" Foreground="White"/>
+            <TextBlock Text="{Binding Message}"
+                      TextWrapping="Wrap"
+                      Foreground="LightGray"/>
+          </StackPanel>
+        </Border>
+
+        <StackPanel Spacing="10" HorizontalAlignment="Center" Margin="0,10,0,0">
+          <Button Content="Очистити всі дані"
+                  Command="{Binding ClearAllCommand}"
+                  Width="450"
+                  HorizontalContentAlignment="Center"
+                  VerticalContentAlignment="Center"/>
+          <Button Content="Повернутися до меню"
+                  Command="{Binding GoBackCommand}"
+                  Width="450"
+                  HorizontalContentAlignment="Center"
+                  VerticalContentAlignment="Center"/>
+        </StackPanel>
+      </StackPanel>
+    </Border>
+  </ScrollViewer>
+</UserControl>

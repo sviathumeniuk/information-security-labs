@@ -3,7 +3,8 @@
              xmlns:vm="using:code.ViewModels"
              x:Class="code.Views.Lab2View"
              x:DataType="vm:Lab2ViewModel">
-    <Border Background="#181818" CornerRadius="8" Padding="30" MaxWidth="800">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Border Background="#181818" CornerRadius="8" Padding="30" MaxWidth="800" HorizontalAlignment="Center">
         <StackPanel Spacing="20">
             <TextBlock Text="Лабораторна робота 2 - MD5" 
                       HorizontalAlignment="Center" 
@@ -84,4 +85,5 @@
             </Border>
         </StackPanel>
     </Border>
+  </ScrollViewer>
 </UserControl>
